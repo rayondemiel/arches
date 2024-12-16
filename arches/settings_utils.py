@@ -35,7 +35,7 @@ def list_arches_app_names():
 
 def list_arches_app_paths():
     return [
-        config.module.__path__[0]
+        os.path.realpath(config.module.__path__[0])
         for config in apps.get_app_configs()
         if getattr(config, "is_arches_application", False)
     ]
@@ -149,7 +149,7 @@ def generate_frontend_configuration():
         root_dir_path = os.path.realpath(settings.ROOT_DIR)
 
         arches_app_names = list_arches_app_names()
-        arches_app_paths = [os.path.realpath(path) for path in list_arches_app_paths()]
+        arches_app_paths = list_arches_app_paths()
         path_lookup = dict(zip(arches_app_names, arches_app_paths, strict=True))
 
         frontend_configuration_settings_data = {
