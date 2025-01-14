@@ -169,4 +169,3 @@ class ActivityStreamCollectionTests(ArchesTestCase):
         obj = collection_page.to_obj()
         self.assertIn("id", obj["orderedItems"][0]["object"])
         self.assertIsNone(URLValidator()(obj["orderedItems"][0]["object"]["id"]))
-
