@@ -156,7 +156,9 @@ class ActivityStreamCollectionPage(object):
                 obj["formerType"] = obj["type"]
                 obj["type"] = "Tombstone"
 
-            obj["id"] = self.base_uri_for_arches + reverse("resources", args=(editlog_object.resourceinstanceid,))
+            obj["id"] = self.base_uri_for_arches + reverse(
+                "resources", args=(editlog_object.resourceinstanceid,)
+            )
 
             return obj
 
