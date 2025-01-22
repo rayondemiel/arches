@@ -31,7 +31,9 @@ define(['jquery', 'backbone', 'arches', 'views/concept-search', 'models/concept'
                     id: this.conceptsearch.searchbox.val(),
                     relationshiptype: this.relationshiptype.val()
                 });
-                this.model.set('added', [parentConcept.toJSON()]);
+                if (parentConcept.id) {
+                    this.model.set('added', [parentConcept.toJSON()]);
+                }
             }
 
             var concepts = [];
