@@ -624,6 +624,9 @@ class PermissionBackend(ObjectPermissionBackend):  # type: ignore
             support, user_obj = check_support(user_obj, obj)
             if not support:
                 return False
+            
+            if user_obj.is_superuser:
+                return True
 
             if "." in perm:
                 app_label, perm = perm.split(".")
