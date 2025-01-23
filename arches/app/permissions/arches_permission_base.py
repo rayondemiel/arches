@@ -624,9 +624,6 @@ class PermissionBackend(ObjectPermissionBackend):  # type: ignore
             support, user_obj = check_support(user_obj, obj)
             if not support:
                 return False
-            
-            if user_obj.is_superuser:
-                return True
 
             if "." in perm:
                 app_label, perm = perm.split(".")
@@ -635,6 +632,9 @@ class PermissionBackend(ObjectPermissionBackend):  # type: ignore
                         "Passed perm has app label of '%s' and "
                         "given obj has '%s'" % (app_label, obj._meta.app_label)
                     )
+            
+            if user_obj.is_superuser:
+                return True
 
             obj_checker: ObjectPermissionChecker = CachedObjectPermissionChecker(
                 user_obj, obj
