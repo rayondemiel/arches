@@ -632,7 +632,7 @@ class PermissionBackend(ObjectPermissionBackend):  # type: ignore
                         "Passed perm has app label of '%s' and "
                         "given obj has '%s'" % (app_label, obj._meta.app_label)
                     )
-            
+
             if user_obj.is_superuser:
                 return True
 
