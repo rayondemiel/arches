@@ -36,7 +36,6 @@ from psycopg2.extensions import AsIs
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 CORE_CONCEPTS = (
@@ -226,17 +225,20 @@ class Concept(object):
                         self.subconcepts = sorted(
                             self.subconcepts,
                             key=lambda concept: self.natural_keys(
-                            concept.get_sortkey(lang)
+                                concept.get_sortkey(lang)
                             ),
                             reverse=False,
                         )
                     except TypeError:
                         self.subconcepts = sorted(
-                            self.subconcepts, 
-                            key=lambda concept: [str(k) for k in self.natural_keys(concept.get_sortkey(lang))], 
-                            reverse=False
+                            self.subconcepts,
+                            key=lambda concept: [
+                                str(k)
+                                for k in self.natural_keys(concept.get_sortkey(lang))
+                            ],
+                            reverse=False,
                         )
-                        
+
                     # self.subconcepts = sorted(self.subconcepts, key=methodcaller(
                     #     'get_sortkey', lang=lang), reverse=False)
 
